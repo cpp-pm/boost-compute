@@ -1,6 +1,7 @@
 # ---------------------------------------------------------------------------
 #  Copyright (c) 2013 Kyle Lutz <kyle.r.lutz@gmail.com>
-# 
+#  Copyright (c) 2016 Ruslan Baratov <ruslan_baratov@yahoo.com>
+#
 #  Distributed under the Boost Software License, Version 1.0
 #  See accompanying file LICENSE_1_0.txt or copy at
 #  http://www.boost.org/LICENSE_1_0.txt
@@ -8,6 +9,12 @@
 # ---------------------------------------------------------------------------
 
 cmake_minimum_required(VERSION 3.0)
+
+include("cmake/HunterGate.cmake")
+HunterGate(
+    URL "https://github.com/ruslo/hunter/archive/v0.12.44.tar.gz"
+    SHA1 "54963db4cd6e2a8780643a3cc48bdbbefedec6cc"
+)
 
 project(BoostCompute VERSION 0.5)
 
@@ -22,8 +29,9 @@ target_include_directories(boost_compute SYSTEM INTERFACE ${OPENCL_INCLUDE_DIRS}
 target_link_libraries(boost_compute INTERFACE ${OPENCL_LIBRARIES})
 
 # find Boost
-find_package(Boost 1.48 REQUIRED)
-target_include_directories(boost_compute SYSTEM INTERFACE ${Boost_INCLUDE_DIRS})
+hunter_add_package(Boost)
+find_package(Boost 1.48 REQUIRED CONFIG)
+target_link_libraries(boost_compute INTERFACE Boost::boost)
 
 # optional support for c++11
 option(BOOST_COMPUTE_USE_CPP11 "Use C++11 features" OFF)
