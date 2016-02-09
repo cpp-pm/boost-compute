@@ -9,7 +9,7 @@
 
 cmake_minimum_required(VERSION 3.0)
 
-project(BoostCompute)
+project(BoostCompute VERSION 0.5)
 
 set(CMAKE_MODULE_PATH ${BoostCompute_SOURCE_DIR}/cmake)
 
