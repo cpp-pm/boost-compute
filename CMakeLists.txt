@@ -11,7 +11,7 @@ cmake_minimum_required(VERSION 3.0)
 
 project(BoostCompute VERSION 0.5)
 
-set(CMAKE_MODULE_PATH ${BoostCompute_SOURCE_DIR}/cmake)
+list(APPEND CMAKE_MODULE_PATH "${BoostCompute_SOURCE_DIR}/cmake")
 
 # find OpenCL
 find_package(OpenCL REQUIRED)
